@@ -11,10 +11,16 @@ function AuthPage() {
   });
   const navigate = useNavigate();
 
+  const MERCADO_PAGO_SUBSCRIPTION_URL = 'https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2c93808495be9ff00195c6e19ae3048c';
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically handle authentication
+    // Here you would typically handle authentication and check subscription status
     navigate('/home');
+  };
+
+  const handleSubscribe = () => {
+    window.location.href = MERCADO_PAGO_SUBSCRIPTION_URL;
   };
 
   return (
@@ -27,70 +33,73 @@ function AuthPage() {
             <span className="text-2xl font-bold text-white">Like Look TV</span>
           </div>
 
-          <h2 className="text-3xl font-bold text-white mb-6">
-            {isLogin ? 'Bem-vindo de volta!' : 'Crie sua conta'}
-          </h2>
+          {isLogin ? (
+            <>
+              <h2 className="text-3xl font-bold text-white mb-6">Bem-vindo de volta!</h2>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    required
+                  />
+                </div>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            {!isLogin && (
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-1">
-                  Nome completo
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-                  required
-                />
+                <div>
+                  <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-1">
+                    Senha
+                  </label>
+                  <input
+                    type="password"
+                    id="password"
+                    value={formData.password}
+                    onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                    className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                    required
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
+                >
+                  Entrar <ArrowRight className="w-4 h-4" />
+                </button>
+              </form>
+            </>
+          ) : (
+            <div className="text-center">
+              <h2 className="text-3xl font-bold text-white mb-6">Comece sua jornada!</h2>
+              <p className="text-gray-300 mb-8">
+                Assine agora e tenha acesso ilimitado a filmes, séries e TV ao vivo.
+              </p>
+              <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-6 rounded-xl mb-8">
+                <p className="text-2xl font-bold text-white">Oferta Especial</p>
+                <p className="text-4xl font-bold text-white">R$4,99/mês</p>
+                <p className="text-sm text-gray-200 mt-2">Cancele quando quiser</p>
               </div>
-            )}
-
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
-                Email
-              </label>
-              <input
-                type="email"
-                id="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-                required
-              />
+              <button
+                onClick={handleSubscribe}
+                className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-4 rounded-lg transition-colors flex items-center justify-center gap-2 mb-4"
+              >
+                Assinar Agora <ArrowRight className="w-4 h-4" />
+              </button>
             </div>
-
-            <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-300 mb-1">
-                Senha
-              </label>
-              <input
-                type="password"
-                id="password"
-                value={formData.password}
-                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="w-full px-4 py-2 rounded-lg bg-gray-800 border border-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-                required
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-3 rounded-lg transition-colors flex items-center justify-center gap-2"
-            >
-              {isLogin ? 'Entrar' : 'Criar conta'} <ArrowRight className="w-4 h-4" />
-            </button>
-          </form>
+          )}
 
           <p className="mt-4 text-center text-gray-400">
-            {isLogin ? 'Ainda não tem uma conta?' : 'Já tem uma conta?'}{' '}
+            {isLogin ? 'Ainda não é assinante?' : 'Já é assinante?'}{' '}
             <button
               onClick={() => setIsLogin(!isLogin)}
               className="text-purple-400 hover:text-purple-300"
             >
-              {isLogin ? 'Criar conta' : 'Fazer login'}
+              {isLogin ? 'Assine agora' : 'Fazer login'}
             </button>
           </p>
         </div>

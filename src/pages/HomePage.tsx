@@ -1,7 +1,11 @@
 import React from 'react';
-import { Play, Tv, Film, TrendingUp, Star, ChevronRight } from 'lucide-react';
+import { Play, Tv, Film, Star, ChevronRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
+  const navigate = useNavigate();
+  const MERCADO_PAGO_SUBSCRIPTION_URL = 'https://www.mercadopago.com.br/subscriptions/checkout?preapproval_plan_id=2c93808495be9ff00195c6e19ae3048c';
+
   const featuredMovies = [
     { title: "Inception", image: "https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=600&auto=format&fit=crop&q=60" },
     { title: "The Matrix", image: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=600&auto=format&fit=crop&q=60" },
@@ -13,6 +17,10 @@ function HomePage() {
     { title: "Stranger Things", image: "https://images.unsplash.com/photo-1626814026160-2237a95fc5a0?w=600&auto=format&fit=crop&q=60" },
     { title: "The Crown", image: "https://images.unsplash.com/photo-1578022761797-b8636ac1773c?w=600&auto=format&fit=crop&q=60" }
   ];
+
+  const handleSubscribe = () => {
+    window.location.href = MERCADO_PAGO_SUBSCRIPTION_URL;
+  };
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
@@ -30,7 +38,10 @@ function HomePage() {
             <Play className="w-8 h-8 text-purple-500" />
             <span className="text-2xl font-bold">Like Look TV</span>
           </div>
-          <button className="bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full font-semibold transition-colors">
+          <button 
+            onClick={handleSubscribe}
+            className="bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full font-semibold transition-colors"
+          >
             Assinar Agora
           </button>
         </nav>
@@ -117,7 +128,10 @@ function HomePage() {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl font-bold mb-6">Comece a assistir hoje mesmo</h2>
           <p className="text-xl mb-8">Cancele quando quiser. Sem compromisso.</p>
-          <button className="bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-full font-semibold text-lg transition-colors">
+          <button 
+            onClick={handleSubscribe}
+            className="bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-full font-semibold text-lg transition-colors"
+          >
             Experimente por R$4,99/mês
           </button>
         </div>
