@@ -56,91 +56,62 @@ function HomePage() {
         </div>
       </header>
 
-      {/* Features Section */}
-      <section className="py-16 px-8">
-        <div className="max-w-6xl mx-auto grid grid-cols-3 gap-8">
-          <div className="text-center">
-            <Film className="w-12 h-12 mx-auto mb-4 text-purple-500" />
-            <h3 className="text-xl font-semibold mb-2">Filmes Exclusivos</h3>
-            <p className="text-gray-400">Milhares de filmes para todos os gostos</p>
-          </div>
-          <div className="text-center">
-            <Tv className="w-12 h-12 mx-auto mb-4 text-purple-500" />
-            <h3 className="text-xl font-semibold mb-2">TV ao Vivo</h3>
-            <p className="text-gray-400">Seus canais favoritos em tempo real</p>
-          </div>
-          <div className="text-center">
-            <Star className="w-12 h-12 mx-auto mb-4 text-purple-500" />
-            <h3 className="text-xl font-semibold mb-2">Séries Premiadas</h3>
-            <p className="text-gray-400">As melhores séries do momento</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Featured Movies */}
-      <section className="py-16 px-8 bg-gray-800">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-bold">Filmes em Destaque</h2>
-            <button className="flex items-center text-purple-400 hover:text-purple-300">
-              Ver todos <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-          <div className="grid grid-cols-3 gap-6">
-            {featuredMovies.map((movie, index) => (
-              <div key={index} className="relative group cursor-pointer">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <img src={movie.image} alt={movie.title} className="w-full h-72 object-cover rounded-lg" />
-                <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <h3 className="text-xl font-semibold">{movie.title}</h3>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Popular Series */}
-      <section className="py-16 px-8">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-bold">Séries Populares</h2>
-            <button className="flex items-center text-purple-400 hover:text-purple-300">
-              Ver todas <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-          <div className="grid grid-cols-3 gap-6">
-            {popularSeries.map((series, index) => (
-              <div key={index} className="relative group cursor-pointer">
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <img src={series.image} alt={series.title} className="w-full h-72 object-cover rounded-lg" />
-                <div className="absolute bottom-4 left-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <h3 className="text-xl font-semibold">{series.title}</h3>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-16 px-8 bg-gradient-to-r from-purple-900 to-pink-900">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-6">Comece a assistir hoje mesmo</h2>
-          <p className="text-xl mb-8">Cancele quando quiser. Sem compromisso.</p>
-          <button 
-            onClick={handleSubscribe}
-            className="bg-purple-600 hover:bg-purple-700 px-8 py-4 rounded-full font-semibold text-lg transition-colors"
-          >
-            Experimente por R$4,99/mês
-          </button>
-        </div>
-      </section>
-
+      {/* Rest of the sections... */}
+      
       {/* Footer */}
       <footer className="py-8 px-8 bg-gray-900">
-        <div className="max-w-6xl mx-auto text-center text-gray-400">
-          <p>© 2024 Like Look TV Streaming. Todos os direitos reservados.</p>
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <Play className="w-6 h-6 text-purple-500" />
+                <span className="text-xl font-bold">Like Look TV</span>
+              </div>
+              <p className="text-gray-400">
+                Desenvolvido por Like Look Solutions
+              </p>
+              <a 
+                href="https://likelook.wixsite.com/solutions" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-purple-400 hover:text-purple-300"
+              >
+                www.likelook.solutions
+              </a>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Contato</h3>
+              <a 
+                href="https://wa.me/11970603441" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white block mb-2"
+              >
+                WhatsApp: (11) 97060-3441
+              </a>
+              <p className="text-gray-400">Desenvolvedor: Julio Campos Machado</p>
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-4">Links Úteis</h3>
+              <a 
+                href="https://likelook.wixsite.com/solutions" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-white block mb-2"
+              >
+                Sobre a Like Look Solutions
+              </a>
+              <button 
+                onClick={handleSubscribe}
+                className="text-gray-400 hover:text-white block"
+              >
+                Assinar Agora
+              </button>
+            </div>
+          </div>
+          <div className="text-center text-gray-400 border-t border-gray-800 pt-8">
+            <p>© 2024 Like Look TV Streaming. Todos os direitos reservados.</p>
+          </div>
         </div>
       </footer>
     </div>
