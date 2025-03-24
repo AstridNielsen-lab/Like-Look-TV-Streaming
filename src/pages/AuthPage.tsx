@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Play, ArrowRight } from 'lucide-react';
+import { Play, ArrowRight, MessageCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 function AuthPage() {
@@ -23,19 +23,23 @@ function AuthPage() {
     window.location.href = MERCADO_PAGO_SUBSCRIPTION_URL;
   };
 
+  const handleWhatsAppSupport = () => {
+    window.open('https://wa.me/5511970603411', '_blank');
+  };
+
   return (
-    <div className="min-h-screen bg-gray-900 flex">
+    <div className="min-h-screen bg-gray-900 flex flex-col md:flex-row">
       {/* Left Side - Form */}
-      <div className="w-1/2 flex items-center justify-center p-8">
+      <div className="w-full md:w-1/2 flex items-center justify-center p-4 md:p-8">
         <div className="max-w-md w-full">
           <div className="flex items-center gap-2 mb-8">
             <Play className="w-8 h-8 text-purple-500" />
-            <span className="text-2xl font-bold text-white">Like Look TV</span>
+            <span className="text-xl md:text-2xl font-bold text-white">Like Look TV</span>
           </div>
 
           {isLogin ? (
             <>
-              <h2 className="text-3xl font-bold text-white mb-6">Bem-vindo de volta!</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Bem-vindo de volta!</h2>
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-1">
@@ -75,13 +79,13 @@ function AuthPage() {
             </>
           ) : (
             <div className="text-center">
-              <h2 className="text-3xl font-bold text-white mb-6">Comece sua jornada!</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">Comece sua jornada!</h2>
               <p className="text-gray-300 mb-8">
                 Assine agora e tenha acesso ilimitado a filmes, séries e TV ao vivo.
               </p>
               <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-6 rounded-xl mb-8">
-                <p className="text-2xl font-bold text-white">Oferta Especial</p>
-                <p className="text-4xl font-bold text-white">R$4,99/mês</p>
+                <p className="text-xl md:text-2xl font-bold text-white">Oferta Especial</p>
+                <p className="text-3xl md:text-4xl font-bold text-white">R$4,99/mês</p>
                 <p className="text-sm text-gray-200 mt-2">Cancele quando quiser</p>
               </div>
               <button
@@ -106,7 +110,7 @@ function AuthPage() {
       </div>
 
       {/* Right Side - Image */}
-      <div className="w-1/2 relative">
+      <div className="hidden md:block w-full md:w-1/2 relative">
         <div className="absolute inset-0 bg-gradient-to-r from-gray-900 to-transparent z-10" />
         <img
           src="https://images.unsplash.com/photo-1594909122845-11baa439b7bf?w=1200&auto=format&fit=crop&q=60"
@@ -115,15 +119,24 @@ function AuthPage() {
         />
         <div className="relative z-20 p-12 h-full flex items-center">
           <div className="max-w-lg">
-            <h1 className="text-5xl font-bold text-white mb-6">
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-6">
               Seu entretenimento favorito por apenas R$4,99/mês
             </h1>
-            <p className="text-xl text-gray-200">
+            <p className="text-lg md:text-xl text-gray-200">
               Assista a milhares de filmes, séries e programas de TV ao vivo em um só lugar.
             </p>
           </div>
         </div>
       </div>
+
+      {/* WhatsApp Support Button */}
+      <button
+        onClick={handleWhatsAppSupport}
+        className="fixed bottom-4 right-4 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-colors z-50 flex items-center gap-2"
+      >
+        <MessageCircle className="w-6 h-6" />
+        <span className="hidden md:inline">Suporte</span>
+      </button>
     </div>
   );
 }

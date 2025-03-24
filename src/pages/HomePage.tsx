@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Tv, Film, Star, ChevronRight } from 'lucide-react';
+import { Play, MessageCircle } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 function HomePage() {
@@ -22,6 +22,10 @@ function HomePage() {
     window.location.href = MERCADO_PAGO_SUBSCRIPTION_URL;
   };
 
+  const handleWhatsAppSupport = () => {
+    window.open('https://wa.me/5511970603411', '_blank');
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       {/* Hero Section */}
@@ -33,33 +37,31 @@ function HomePage() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         
-        <nav className="relative z-20 flex items-center justify-between px-8 py-6">
+        <nav className="relative z-20 flex items-center justify-between px-4 md:px-8 py-6">
           <div className="flex items-center gap-2">
-            <Play className="w-8 h-8 text-purple-500" />
-            <span className="text-2xl font-bold">Like Look TV</span>
+            <Play className="w-6 md:w-8 h-6 md:h-8 text-purple-500" />
+            <span className="text-xl md:text-2xl font-bold">Like Look TV</span>
           </div>
           <button 
             onClick={handleSubscribe}
-            className="bg-purple-600 hover:bg-purple-700 px-6 py-2 rounded-full font-semibold transition-colors"
+            className="bg-purple-600 hover:bg-purple-700 px-4 md:px-6 py-2 rounded-full font-semibold transition-colors text-sm md:text-base"
           >
             Assinar Agora
           </button>
         </nav>
 
-        <div className="relative z-20 max-w-4xl mx-auto px-8 pt-32">
-          <h1 className="text-6xl font-bold mb-6">Seu entretenimento favorito em um só lugar</h1>
-          <p className="text-xl mb-8">Filmes, séries e TV ao vivo por apenas R$4,99/mês</p>
-          <div className="bg-gradient-to-r from-purple-600 to-pink-600 inline-block px-8 py-4 rounded-xl">
-            <p className="text-2xl font-bold">Oferta Especial</p>
-            <p className="text-4xl font-bold">R$4,99/mês</p>
+        <div className="relative z-20 max-w-4xl mx-auto px-4 md:px-8 pt-16 md:pt-32 text-center md:text-left">
+          <h1 className="text-4xl md:text-6xl font-bold mb-4 md:mb-6">Seu entretenimento favorito em um só lugar</h1>
+          <p className="text-lg md:text-xl mb-6 md:mb-8">Filmes, séries e TV ao vivo por apenas R$4,99/mês</p>
+          <div className="bg-gradient-to-r from-purple-600 to-pink-600 inline-block px-6 md:px-8 py-3 md:py-4 rounded-xl">
+            <p className="text-xl md:text-2xl font-bold">Oferta Especial</p>
+            <p className="text-2xl md:text-4xl font-bold">R$4,99/mês</p>
           </div>
         </div>
       </header>
 
-      {/* Rest of the sections... */}
-      
       {/* Footer */}
-      <footer className="py-8 px-8 bg-gray-900">
+      <footer className="py-8 px-4 md:px-8 bg-gray-900">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
             <div>
@@ -82,7 +84,7 @@ function HomePage() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Contato</h3>
               <a 
-                href="https://wa.me/11970603441" 
+                href="https://wa.me/5511970603411" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white block mb-2"
@@ -114,6 +116,15 @@ function HomePage() {
           </div>
         </div>
       </footer>
+
+      {/* WhatsApp Support Button */}
+      <button
+        onClick={handleWhatsAppSupport}
+        className="fixed bottom-4 right-4 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-lg transition-colors z-50 flex items-center gap-2"
+      >
+        <MessageCircle className="w-6 h-6" />
+        <span className="hidden md:inline">Suporte</span>
+      </button>
     </div>
   );
 }
