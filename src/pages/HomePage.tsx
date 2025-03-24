@@ -23,7 +23,7 @@ function HomePage() {
   };
 
   const handleWhatsAppSupport = () => {
-    window.open('https://wa.me/5511970603411', '_blank');
+    window.open('https://wa.me/5511970603441', '_blank');
   };
 
   return (
@@ -84,7 +84,7 @@ function HomePage() {
             <div>
               <h3 className="text-lg font-semibold mb-4">Contato</h3>
               <a 
-                href="https://wa.me/5511970603411" 
+                href="https://wa.me/5511970603441" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-white block mb-2"
