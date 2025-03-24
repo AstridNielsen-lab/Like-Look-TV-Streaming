@@ -24,7 +24,7 @@ function AuthPage() {
   };
 
   const handleWhatsAppSupport = () => {
-    window.open('https://wa.me/5511970603411', '_blank');
+    window.open('https://wa.me/5511970603441', '_blank');
   };
 
   return (
