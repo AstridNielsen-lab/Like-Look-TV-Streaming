@@ -1,22 +1,27 @@
 {
+  // IMPORTANT: If you had "extends": "./tsconfig.json" here, remove it.
   "compilerOptions": {
     "target": "ES2022",
-    "lib": ["ESNext"], // Change ES2023 to ESNext
+    "lib": ["ESNext"],
     "module": "ESNext",
     "skipLibCheck": true,
-
-    /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "moduleDetection": "force",
-    "noEmit": true,
+    
+    // --- CRITICAL FOR PROJECT REFERENCES ---
+    "composite": true,        // <--- This MUST be true
+    "declaration": true,      // <--- Essential for composite projects (emits .d.ts files)
+    "outDir": "./dist/node",  // <--- Specify an output directory
+    // "noEmit": true,         // <--- This MUST be REMOVED (or set to false if your TS version allows)
+    // ---------------------------------------
 
-    /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["vite.config.ts"]
+  "include": ["vite.config.ts"],
+  "exclude": ["node_modules", "dist"] // Exclude the new output directory
 }
